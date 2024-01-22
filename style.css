@@ -1,0 +1,249 @@
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@500;700&display=swap");
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: max-content;
+  gap: 100px;
+  background-color: hsl(180, 52%, 96%);
+  font-family: "League Spartan", sans-serif;
+
+  @media screen and (max-width: 975px) {
+    transition: all 0.2s ease-out;
+    gap: 50px;
+
+    &:has(header > #filter:empty) {
+      gap: 0px;
+    }
+  }
+}
+header {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  background: url(./images/bg-header-desktop.svg), hsl(180, 29%, 50%);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  & > #filter {
+    position: absolute;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    padding: 1.5em;
+    border-radius: 5px;
+    gap: 10px;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    transition: all 0.2s ease-out;
+    width: 80%;
+
+    &:empty {
+      padding: 0em;
+    }
+    & > ul {
+      display: flex;
+      list-style-type: none;
+      flex-wrap: wrap;
+      gap: 10px;
+
+      & > li {
+        position: relative;
+        display: flex;
+        gap: 10px;
+        background-color: hsl(180, 31%, 95%);
+        color: hsl(180, 29%, 50%);
+        padding: 0.3em 35px 0.3em 0.5em;
+        transition: color, background-color 0.5s ease-out;
+
+        & > button {
+          position: absolute;
+          top: 0;
+          right: 0;
+          height: 100%;
+          aspect-ratio: 1 / 1;
+          border: 0px;
+          background: url(./images/icon-remove.svg), hsl(180, 29%, 50%);
+          background-position: center;
+          background-size: 60%;
+          background-repeat: no-repeat;
+
+          &:hover {
+            background-color: #000;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+
+    & > p {
+      color: hsl(180, 29%, 50%);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+main {
+  position: relative;
+  overflow: auto;
+  display: grid;
+  grid-auto-flow: row;
+  grid-column-gap: 10px;
+  gap: 20px;
+  width: 80%;
+
+  & div.job {
+    position: relative;
+    display: flex;
+    height: 150px;
+    gap: 1.5em;
+    width: 100%;
+    padding: 1.75em 2em;
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+
+    &[data-featured="true"] {
+      &::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 5px;
+        background-color: hsl(180, 29%, 50%);
+      }
+    }
+
+    & > img {
+      height: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 100px;
+    }
+
+    & > aside {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      color: hsl(180, 29%, 50%);
+
+      & > small {
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: 0.75em;
+
+        & > * {
+          display: flex;
+          align-items: flex-end;
+          padding: 0.5em;
+          border-radius: 1em;
+          color: white;
+          height: 100%;
+          font-size: 0.8em;
+        }
+
+        & > .new {
+          background-color: hsl(180, 29%, 50%);
+        }
+        & > .featured {
+          background-color: black;
+        }
+      }
+      & > sub {
+        color: hsl(180, 8%, 52%);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      & > p {
+        font-weight: bold;
+        color: #000;
+        transition: color 0.2s ease-out;
+
+        &:hover {
+          cursor: pointer;
+          color: hsl(180, 29%, 50%);
+        }
+      }
+    }
+    & > ul {
+      display: flex;
+      list-style-type: none;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-left: auto;
+
+      & > li {
+        background-color: hsl(180, 31%, 95%);
+        color: hsl(180, 29%, 50%);
+        padding: 0.3em 0.5em;
+        transition: color, background-color 0.5s ease-out;
+
+        &:hover {
+          color: hsl(180, 31%, 95%);
+          background-color: hsl(180, 29%, 50%);
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 975px) {
+    gap: 40px;
+    padding-block: 50px;
+    & > div.job {
+      flex-direction: column;
+      overflow: visible;
+      gap: 10px;
+      height: fit-content;
+
+      & > img {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 0;
+        transform: translateY(-50%);
+      }
+
+      & > aside {
+        gap: 10px;
+        & > sub {
+          justify-content: start;
+          gap: 10px;
+        }
+      }
+
+      & > ul {
+        border-top: 1px solid hsla(180, 8%, 52%, 0.478);
+        padding-top: 10px;
+        margin-left: 0;
+        justify-content: start;
+        flex-wrap: wrap;
+      }
+    }
+  }
+}
