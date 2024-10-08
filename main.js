@@ -1,4 +1,4 @@
-import userJobData from "./data.json" assert { type: "json" };
+import userJobData from "./data.json" with { type: "json" };
 const filterPannel = document.getElementById("filter");
 const displayDataContainer = document.getElementById("containerJobs");
 var filterTable = {
